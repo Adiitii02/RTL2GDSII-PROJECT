@@ -1,0 +1,64 @@
+GNU gdb (GDB) Rocky Linux 8.2-20.el8.0.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Attaching to process 42588
+[New LWP 42589]
+[New LWP 42590]
+[New LWP 42598]
+[New LWP 42603]
+[New LWP 42604]
+[New LWP 42605]
+[New LWP 42606]
+[New LWP 42607]
+[New LWP 42608]
+[New LWP 42609]
+[New LWP 42610]
+[New LWP 42611]
+[New LWP 42612]
+[New LWP 42613]
+[New LWP 42614]
+[New LWP 42615]
+[New LWP 42616]
+[New LWP 42626]
+[New LWP 42627]
+[New LWP 42628]
+[New LWP 42629]
+[New LWP 42630]
+[New LWP 46377]
+[New LWP 46378]
+[New LWP 46379]
+[New LWP 46380]
+[New LWP 46381]
+[New LWP 46382]
+[New LWP 46383]
+[New LWP 46384]
+[New LWP 46385]
+[New LWP 46386]
+[New LWP 46387]
+[New LWP 46388]
+[New LWP 46389]
+[New LWP 46412]
+[New LWP 46413]
+[New LWP 50350]
+[New LWP 50351]
+[New LWP 50352]
+[New LWP 50353]
+[New LWP 50354]
+[New LWP 50355]
+[New LWP 50356]
+[New LWP 50357]
+[New LWP 50358]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
