@@ -1,0 +1,12 @@
+#@ # 
+#@ # Running icc2_shell Version W-2024.09 for linux64 -- Aug 25, 2024
+#@ # Date:   Thu May 29 14:33:09 2025
+#@ # Run by: student@ict-chipin.sot.pdpu.ac.in
+#@ 
+
+set PDK_PATH ./../ref
+create_lib -ref_lib $PDK_PATH/lib/ndm/saed32rvt_c.ndm FULL_ADDER_LIB
+read_verilog {./../DC/results/full_adder.mapped.v} -library FULL_ADDER_LIB -design full_adder -top full_adder
+set PDK_PATH ./../ref
+create_lib -ref_lib $PDK_PATH/lib/ndm/saed32rvt_c.ndm FULL_ADDER_LIB
+read_verilog {../../DC/results/full_adder.mapped.v} -library FULL_ADDER_LIB -design full_adder -top full_adder
