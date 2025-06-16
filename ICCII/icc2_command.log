@@ -1,0 +1,36 @@
+#@ # 
+#@ # Running icc2_shell Version W-2024.09 for linux64 -- Aug 25, 2024
+#@ # Date:   Mon Jun  9 00:22:30 2025
+#@ # Run by: student@ict-chipin.sot.pdpu.ac.in
+#@ 
+
+start_gui
+gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {Logical Cells}
+set PDK_PATH ./../ref
+
+create_lib -ref_lib $PDK_PATH/lib/ndm/saed32rvt_c.ndm RIPPLE_ADDER_LIBfinal
+
+read_verilog {./../DC/results/full_adder.mapped.v} -library RIPPLE_ADDER_LIBfinal -design ripple_adder -top ripple_adder
+initialize_floorplan  -core_utilization 0.6 -core_offset {3 3} -coincident_boundary false
+set_individual_pin_constraints -ports [get_ports B] -sides 2 -pin_spacing_distance 3
+place_pins -self
+create_placement -floorplan  -effort high
+save_block as ripple_adder8
+save_lib as ripple_adder8
+
+
+source -verbose -echo /home/student/Downloads/RTL2GDSII/ICCII/scripts/power_planning.tcl
+win_set_filter -visible -class cell -filter {assembly_die_margin bridge clock_margin filler_allowed_margin hard_macro_margin hard_margin route_blockage_margin seal_ring_margin soft_margin substrate} -layer {}
+win_set_filter -visible -class pseudo_bump -filter {deleted} -layer {}
+win_set_filter -visible -class pseudo_tsv -filter {deleted} -layer {}
+win_set_filter -visible -class placement_blockage -filter {wiring} -layer {0-82}
+win_set_filter -expand_cell_types {soft_macro  }
+win_set_select_class -visible {cell port bound routing_blockage shaping_blockage pg_region bump_region pseudo_bump pseudo_tsv pin_blockage block_shielding topology_node topology_edge topology_repeater annotation_shape core_area die_area edit_group shape via terminal fill_cell metal_area metal_area_hole placement_blockage }
+win_set_filter -class cell -filter {array assembly_die_margin bridge clock_margin filler_allowed_margin hard_macro_margin hard_margin route_blockage_margin seal_ring_margin soft_margin substrate} -layer {}
+win_set_filter -class pseudo_bump -filter {deleted} -layer {}
+win_set_filter -class pseudo_tsv -filter {deleted} -layer {}
+win_set_filter -class placement_blockage -filter {wiring} -layer {0-82}
+win_set_select_class {cell port bound routing_blockage shaping_blockage pg_region bump_region pseudo_bump pseudo_tsv pin_blockage topology_node topology_edge topology_repeater annotation_shape edit_group shape via metal_area metal_area_hole placement_blockage }
+source -verbose -echo /home/student/Downloads/RTL2GDSII/ICCII/scripts/placement.tcl
+source -verbose -echo /home/student/Downloads/RTL2GDSII/ICCII/scripts/clock.tcl
+source -verbose -echo /home/student/Downloads/RTL2GDSII/ICCII/scripts/route.tcl

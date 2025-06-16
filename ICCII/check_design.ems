@@ -1,0 +1,18 @@
+<Database>
+versionNumber:2
+Name/home/student/Downloads/RTL2GDSII/ICCII/check_design.ems
+Creation TimeMon Jun  9 00:25:00 2025
+Modified TimeMon Jun  9 00:25:00 2025
+Design Nameripple_adder
+Library NameRIPPLE_ADDER_LIBfinal
+</Database>
+<RuleCount>
+CTS-9141
+DFT-0111
+</RuleCount>
+<UserDefinedRules>
+</UserDefinedRules>
+<Messages>
+DFT-011Informationreason10
+CTS-914WarningportClock10
+</Messages>
