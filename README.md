@@ -1,142 +1,181 @@
-# 8-bit Ripple Carry Adder (RTL to GDSII Flow)
+# 8-bit Ripple Carry Adder using 1-bit Full Adders | RTL to GDSII
 
-This project demonstrates the complete ASIC design flow for an **8-bit Ripple Carry Adder** constructed using **1-bit Full Adders**, implemented in Verilog and synthesized through the **Synopsys digital design toolchain**. It culminates in generating the GDSII layout using the **SAED 32nm PDK**.
+> This project demonstrates the complete ASIC design flow of an 8-bit Ripple Carry Adder (RCA) using Verilog and Synopsys tools, from RTL to GDSII layout, following industry practices.
 
 ---
 
 ## 📌 Table of Contents
-- [Introduction](#introduction)
-- [Tools Used](#tools-used)
-- [Project Flow](#project-flow)
-  - [RTL Design](#rtl-design)
-  - [Synthesis (DC)](#synthesis-dc)
-  - [Physical Design (ICC2)](#physical-design-icc2)
-  - [Static Timing Analysis (PrimeTime)](#static-timing-analysis-primetime)
-- [Final Results](#final-results)
-- [Conclusion](#conclusion)
+
+1. [Objective](#objective)
+2. [Tools & Environment](#tools--environment)
+3. [Project Architecture](#project-architecture)
+4. [Step-by-Step Flow](#step-by-step-flow)
+    - RTL Design
+    - Simulation
+    - Synthesis
+    - Floorplanning
+    - Power Planning
+    - Placement
+    - Clock Tree Synthesis
+    - Routing
+    - Static Timing Analysis
+5. [Results](#results)
+6. [Conclusion](#conclusion)
 
 ---
 
-## 🧠 Introduction
+## 🎯 Objective
 
-The 8-bit Ripple Carry Adder is a classic digital design that chains 1-bit full adders to perform binary addition. The project showcases the complete **VLSI backend design flow** using Verilog and Synopsys tools.
-
----
-
-## 🛠️ Tools Used
-
-| Tool | Purpose |
-|------|---------|
-| Verilog HDL | RTL design |
-| Synopsys VCS | Functional simulation |
-| Synopsys Verdi | Waveform debugging |
-| Design Compiler | Logic synthesis |
-| IC Compiler II (ICC2) | Floorplan to Routing |
-| PrimeTime | Static Timing Analysis |
-| SAED 32nm | Standard cell library (SS corner) |
+Design, implement, and verify an **8-bit Ripple Carry Adder** using **1-bit Full Adders**, and carry out the complete **ASIC VLSI flow** to generate a GDSII-compatible layout using the **SAED 32nm** standard cell library.
 
 ---
 
-## 🚀 Project Flow
+## 🛠️ Tools & Environment
 
-### 🔹 RTL Design
+| Tool             | Purpose                         |
+|------------------|----------------------------------|
+| **Verilog HDL**  | RTL Design                      |
+| **Synopsys VCS** | Functional Simulation           |
+| **Verdi**        | Waveform Debugging              |
+| **Design Compiler (DC)** | Logic Synthesis        |
+| **ICC2**         | Physical Design (PDK: SAED 32nm)|
+| **PrimeTime (PT)**| Static Timing Analysis (STA)   |
+| **Linux OS**     | Environment: Rocky Linux        |
 
-- Developed using Verilog:
+
+---
+
+## Project Architecture
+
+### 1-bit Full Adder (FA)
+Computes:
+sum = A ⊕ B ⊕ Cin
+cout = AB + BCin + ACin
+
+yaml
+Copy
+Edit
+
+### 🧮 8-bit Ripple Carry Adder
+Cascaded connection of 8 full adders. Each FA's carry-out is connected to the next FA's carry-in.
+
+---
+
+## 🚀 Step-by-Step Flow
+
+### 🔹 1. RTL Design
+
+- Files:
   - `full_adder.v`
   - `ripple_adder.v`
-- Testbench created and simulated using VCS.
-- Functional correctness verified using Verdi.
+- Created using Verilog HDL.
+- Modular and hierarchical design.
 
-**RTL Schematic**  
+**🖼️ RTL Schematic:**  
 ![RTL Schematic](images/rtl_schematic.png)
 
 ---
 
-### 🔹 Synthesis (DC)
+### 🔹 2. Simulation
 
-- Tool: `dc_shell`
-- Used `compile_ultra` for optimized synthesis.
-- Applied constraints (`seq_det.sdc`) with a **clock period of 3.4 ns**.
+- Tool: Synopsys VCS
+- Verilog testbench validates functional correctness.
+- Waveform viewed using Verdi (`.fsdb` output)
 
-**Synthesis Report Screenshot**  
+**🖼️ Simulation Waveform:**  
+![Waveform](images/verdi_waveform.png)
+
+---
+
+### 🔹 3. Synthesis (Design Compiler)
+
+- `compile_ultra` used for optimization.
+- Clock constraint: 3.4 ns
+- Area and timing reports generated using `report_qor` and `report_timing`
+
+**🖼️ DC Schematic & Report:**  
 ![DC Report](images/dc_report.png)
 
 ---
 
-### 🔹 Physical Design (ICC2)
+### 🔹 4. Floorplanning (ICC2)
 
-#### 🔸 Floorplanning
-- Core utilization: 60%
+- Tool: ICC2 with SAED 32nm PDK
+- Core Utilization: 60%
 - Pins auto-placed
-- Cell placement using `create_placement`
+- Floorplan saved and opened as `RIPPLE_ADDER`
 
+**🖼️ Floorplan Layout:**  
 ![Floorplan](images/floorplan.png)
 
-#### 🔸 Power Planning
-- Power rings (M7/M8)
-- Mesh grid (M6–M8)
-- Cell rail on M1
+---
 
+### 🔹 5. Power Planning
+
+- Core rings and mesh using M7/M8/M6 layers
+- Standard cell rails created on M1
+
+**🖼️ Power Plan Visualization:**  
 ![Power Plan](images/power_plan.png)
 
-#### 🔸 Placement
+---
 
-- Legalized and optimized placement with parasitics set.
+### 🔹 6. Placement
 
+- Legalized using `place_opt` and `legalize_placement`
+- Placement checked with parasitic models
+
+**Placement Layout:**  
 ![Placement](images/placement.png)
 
-#### 🔸 Clock Tree Synthesis (CTS)
+---
 
-- Local skew optimization enabled.
-- Clock routes built using CCD flow.
+### 🔹 7. Clock Tree Synthesis (CTS)
 
+- CCD flow with local skew optimization
+- Clock network synthesized and routed
+
+**CTS Result:**  
 ![CTS](images/cts.png)
 
-#### 🔸 Routing
+---
 
-- Timing-driven and crosstalk-aware routing.
-- Antenna rule violations resolved using diodes.
+### 🔹 8. Routing
 
+- Global, track, and detailed routing completed
+- Antenna violations fixed using diodes
+
+**🖼️ Routed Design:**  
 ![Routing](images/routing.png)
 
 ---
 
-### 🔹 Static Timing Analysis (PrimeTime)
+### 🔹 9. Static Timing Analysis (PrimeTime)
 
-- Read SDC and parasitic SPEF files.
-- Performed full timing update and report generation.
+- Netlist, SDC, and SPEF loaded
+- Final Slack: `+0.225552 ns`
+- STA confirms timing closure
 
-![PrimeTime GUI](images/pt_gui.png)
-
----
-
-## 📈 Final Results
-
-| Parameter | Value |
-|----------|-------|
-| **Area** | 34.149 μm² |
-| **Final Slack** | +0.225552 ns |
-| **Clock Period** | 3.4 ns |
-| **Library** | SAED 32nm SS |
-| **Power Consumption** | *(Shown in PrimeTime screenshot)* |
+**🖼️ PrimeTime Timing Path:**  
+![PT](images/pt_gui.png)
 
 ---
 
-## ✅ Conclusion
+## 📊 Results
 
-This project implemented an 8-bit Ripple Carry Adder using the full RTL to GDSII flow. All backend stages—**synthesis**, **placement**, **clocking**, and **routing**—were optimized to meet the timing and area constraints.
-
-Positive slack achieved in **PrimeTime** confirms the design is **functionally and temporally correct** at the intended clock frequency.
-
----
-
-## 📎 Screenshots Folder
-
-All images referenced above are available in the [`/images`](images) directory.
+| Metric           | Value             |
+|------------------|------------------|
+| **Area**         | 34.149 μm²        |
+| **Final Slack**  | +0.225552 ns      |
+| **Clock Period** | 3.4 ns            |
+| **Power**        | *From PT Report*  |
+| **Library**      | SAED 32nm SS      |
 
 ---
 
-## 📚 License
+## Conclusion
 
-This project is part of an academic VLSI submission and is for educational purposes only.
+This project successfully demonstrates the entire RTL to GDSII design flow of a classic digital component using Synopsys tools. The design met all performance and area goals under the 32nm technology node, with validated timing through STA.
+
+The result confirms a solid understanding of the full ASIC flow—from RTL to layout—and reinforces best practices in power planning, timing closure, and physical optimization.
 
