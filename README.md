@@ -168,7 +168,6 @@ Cell Area <p>
 **Cell and Pin Count**
 ![](images/cell_pin_count.jpeg)
 
-
 **PrimeTime Report:**  
 ![PT](images/pt_gui.jpeg)
 
