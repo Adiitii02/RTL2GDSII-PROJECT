@@ -108,7 +108,7 @@ Cell Area <p>
 - Pins auto-placed
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
-Floorplan Layout: 
+**Floorplan Layout:** 
 ![Floorplan](images/floorplan.jpeg)
 
 ---
@@ -118,7 +118,7 @@ Floorplan Layout:
 - Core rings and mesh using M7/M8/M6 layers
 - Standard cell rails created on M1
 
-**🖼️ Power Plan Visualization:**  
+**Power Plan Visualization:** 
 ![Power Plan](images/powerplan.jpeg)
 
 ---
@@ -148,7 +148,7 @@ Floorplan Layout:
 - Global, track, and detailed routing completed
 - Antenna violations fixed using diodes
 
-**🖼️ Routed Design:**  
+**Routed Design:**  
 ![Routing](images/routing.jpeg)
 
 ---
@@ -159,8 +159,11 @@ Floorplan Layout:
 - Final Slack: `+0.225552 ns`
 - STA confirms timing closure
 
-**🖼️ PrimeTime Timing Path:**  
-![PT](images/pt_gui.png)
+**Final Slack**
+![FS](images/final_slack.jpeg)
+
+**PrimeTime Timing Path:**  
+![PT](images/pt_gui.jpeg)
 
 ---
 
