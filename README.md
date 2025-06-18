@@ -160,10 +160,13 @@ Cell Area <p>
 - STA confirms timing closure
 
 **Final Slack**
-![FS](images/final_slack.jpeg)
+![FS](images/Final_slack.jpeg)
 
 **PrimeTime Timing Path:**  
 ![PT](images/pt_gui.jpeg)
+
+**Power Report**
+![Power Report](images/pt_shell_power_report.jpeg)
 
 ---
 
