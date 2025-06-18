@@ -62,9 +62,9 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 ### 🔹 1. RTL Design
 
 - Files:
-  - full_adder.v
-    (images/Screenshot from 2025-06-03 06-03-16.png)
-  - `ripple_adder.v`
+  - full_adder.v(images/full_adder.png)
+  - ripple_adder.v(images/ripple_adder.png)
+  - tb_ripple_adder.v(images/tb_ripple_adder.png) 
 - Created using Verilog HDL.
 - Modular and hierarchical design.
 
