@@ -26,7 +26,7 @@
 
 ## Objective
 
-Design, implement, and verify an **8-bit Ripple Carry Adder** using **1-bit Full Adders**, and carry out the complete **ASIC VLSI flow** to generate a GDSII-compatible layout using the **SAED 32nm** standard cell library.
+Design, implement, and verify an **8-bit Ripple Carry Adder** using **1-bit Full Adder**, and carry out the complete **ASIC VLSI flow** to generate a GDSII-compatible layout using the **SAED 32nm** standard cell library.
 
 ---
 
@@ -49,7 +49,7 @@ Design, implement, and verify an **8-bit Ripple Carry Adder** using **1-bit Full
 
 ### 1-bit Full Adder (FA)
 Computes:
-sum = A ⊕ B ⊕ Cin
+sum = A ⊕ B ⊕ Cin <p>
 cout = AB + BCin + ACin
 
 ### 8-bit Ripple Carry Adder
