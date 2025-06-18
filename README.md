@@ -57,7 +57,7 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 
 ---
 
-## 🚀 Step-by-Step Flow
+## Step-by-Step Flow
 
 ### 🔹 1. RTL Design
 
@@ -68,7 +68,10 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 - Created using Verilog HDL.
 - Modular and hierarchical design.
 
-**🖼️ RTL Schematic:** <p> RTL Schematic <p> 
+**Gates Used**
+![Gates](images/gates_used.jpeg)
+
+**RTL Schematic:** <p> RTL Schematic <p> 
 ![RTL Schematic](images/rtl_schematic.jpeg)
 
 ---
@@ -162,11 +165,17 @@ Cell Area <p>
 **Final Slack**
 ![FS](images/Final_slack.jpeg)
 
-**PrimeTime Timing Path:**  
+**Cell and Pin Count**
+![](images/cell_pin_count.jpeg)
+
+
+**PrimeTime Report:**  
 ![PT](images/pt_gui.jpeg)
 
 **Power Report**
 ![Power Report](images/pt_shell_power_report.jpeg)
+
+
 
 ---
 
