@@ -178,13 +178,13 @@ Cell Area <p>
 
 ---
 
-## 📊 Results
+## Results
 
 | Metric           | Value             |
 |------------------|------------------|
 | **Cell Area (DC)**         | 134.70 μm² (netlist only)|    
-|**Design Area (DC)**	141.86 μm² (after placement)|
-|**Cell Area (ICC2)**	160.11 μm² (post-layout)|
+|**Design Area (DC)**   |141.86 μm² (after placement)|
+|**Cell Area (ICC2)**	|160.11 μm² (post-layout)|
 | **Final Slack**  | +0.225552 ns      |
 | **Clock Period** | 3.4 ns            |
 | **Power**        | *From PT Report*  |
