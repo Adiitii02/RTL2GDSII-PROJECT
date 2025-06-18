@@ -108,8 +108,8 @@ Cell Area <p>
 - Pins auto-placed
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
-**🖼️ Floorplan Layout:**  
-![Floorplan](images/floorplan.png)
+** Floorplan Layout:**  
+![Floorplan](images/floorplan.jpeg)
 
 ---
 
@@ -119,7 +119,7 @@ Cell Area <p>
 - Standard cell rails created on M1
 
 **🖼️ Power Plan Visualization:**  
-![Power Plan](images/power_plan.png)
+![Power Plan](images/powerpljpeg)
 
 ---
 
@@ -129,7 +129,7 @@ Cell Area <p>
 - Placement checked with parasitic models
 
 **Placement Layout:**  
-![Placement](images/placement.png)
+![Placement](images/placement.jpeg)
 
 ---
 
@@ -139,7 +139,7 @@ Cell Area <p>
 - Clock network synthesized and routed
 
 **CTS Result:**  
-![CTS](images/cts.png)
+![CTS](images/cts.jpeg)
 
 ---
 
@@ -149,7 +149,7 @@ Cell Area <p>
 - Antenna violations fixed using diodes
 
 **🖼️ Routed Design:**  
-![Routing](images/routing.png)
+![Routing](images/routing.jpeg)
 
 ---
 
