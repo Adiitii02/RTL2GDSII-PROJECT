@@ -111,6 +111,9 @@ Cell Area <p>
 - Pins auto-placed
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
+**Floorplan File** <p>
+![](floorplan.tcl)
+
 **Floorplan Layout:** 
 ![Floorplan](images/floorplan.jpeg)
 
