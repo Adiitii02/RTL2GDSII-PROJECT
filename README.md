@@ -108,7 +108,7 @@ Cell Area <p>
 - Pins auto-placed
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
-** Floorplan Layout:**  
+Floorplan Layout: 
 ![Floorplan](images/floorplan.jpeg)
 
 ---
@@ -119,7 +119,7 @@ Cell Area <p>
 - Standard cell rails created on M1
 
 **🖼️ Power Plan Visualization:**  
-![Power Plan](images/powerpljpeg)
+![Power Plan](images/powerplan.jpeg)
 
 ---
 
