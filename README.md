@@ -166,7 +166,7 @@ Cell Area <p>
 ![FS](images/Final_slack.jpeg)
 
 **Cell and Pin Count**
-![](images/cell_pin_count.jpeg)
+![cell](images/cell_pin_count.jpeg)
 
 **PrimeTime Report:**  
 ![PT](images/pt_gui.jpeg)
