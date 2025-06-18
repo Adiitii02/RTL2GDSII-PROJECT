@@ -112,9 +112,30 @@ Cell Area <p>
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
 **Floorplan File** <p>
-![file](ICCII/scripts/floorplan.tcl)
+### 🗂️ Floorplan Script (`floorplan.tcl`)
 
-**Floorplan Layout:** 
+```tcl
+# This script sets up the floorplan for 8-bit Ripple Carry Adder
+set PDK_PATH ./../ref
+create_lib -ref_lib $PDK_PATH/lib/ndm/saed32rvt_c.ndm RIPPLE_ADDER_LIB
+
+read_verilog {./../DC/results/bit8_shifter.mapped.v} -library RIPPLE_ADDER_LIB -design ripple_adder -top ripple_adder
+
+open_lib RIPPLE_ADDER_LIB
+open_block RIPPLE_ADDER
+
+initialize_floorplan -core_utilization 0.6 -core_offset {3 3} -coincident_boundary false
+set_individual_pin_constraints -ports [get_ports B] -sides 2
+pin_spacing_distance 3
+
+place_pins -self
+create_placement -floorplan -effort high
+
+save_block -as RIPPLE_ADDER
+save_lib
+``` 
+
+**Floorplan Layout:**
 ![Floorplan](images/floorplan.jpeg)
 
 ---
@@ -123,6 +144,78 @@ Cell Area <p>
 
 - Core rings and mesh using M7/M8/M6 layers
 - Standard cell rails created on M1
+
+**PowerPlanning File** <p>
+### PowerPlan Script (`power_planning.tcl`)
+
+```tcl
+## Power-planning - To build Power Delivery Network (PDN)
+## #####################################################################################
+#
+############################################################################
+### Step 1: to_create power/ground nets and to_connect power/ground nets :-
+##############################################################################
+
+#to create power nets
+
+create_net -power {VDD}
+create_net -ground {VSS}
+
+## to connect power/ground_nets
+#
+connect_pg_net -all_blocks -automatic
+
+#################################################################################
+### step 2: to create power and ground ring patterns
+#################################################################################
+###
+#scenario1:
+
+create_pg_ring_pattern core_ring_pattern -horizontal_layer M7 -horizontal_width .4 -horizontal_spacing .3 -vertical_layer M8 -vertical_width .4 -vertical_spacing .3
+
+set_pg_strategy core_power_ring -core -pattern {{name : core_ring_pattern}{nets : {VDD VSS}}{offset : {.5 .5}}}
+
+compile_pg -strategies core_power_ring
+
+###############################################################################
+### step 3: to create pg mesh pattern
+################################################################################
+
+
+create_pg_mesh_pattern mesh -layers { {{vertical_layer: M6}{width: .34} {spacing: interleaving}{pitch: 5} {offset: .5}} {{horizontal_layer: M7}{width: .38} {spacing: interleaving} {pitch: 5} {offset: .5}} {{vertical_layer: M8}{width: .38} {spacing: interleaving}{pitch: 5} {offset: .5}}}
+
+set_pg_strategy core_mesh -pattern { {pattern:mesh} {nets: VDD VSS}} -core -extension {stop: innermost_ring}
+
+#set_pg_strategy core_mesh -pattern { {pattern:mesh} {nets: VDD VSS}} -core -extension {{{side: 1 2} {direction: L T} {stop: innermost_ring}}}
+
+compile_pg -strategies core_mesh
+
+
+###################################################
+###step 4 : to create std cell power rail pattern
+#######################################################
+
+create_pg_std_cell_conn_pattern std_cell_rail -layers {M1} -rail_width 0.06
+
+set_pg_strategy rail_strat -core -pattern {{name: std_cell_rail} {nets: VDD VSS} }
+
+compile_pg -strategies rail_strat
+#compile_pg
+
+##########################################################
+### step 5 : To save block and Save lib
+#############################################################
+## "save_block"  will save block as the deign name (full_adder.design) by default
+#
+save_block
+
+## "save_block -as <preferred name>" to save the block in user preferred name
+##
+## "save_lib" will save library as created already
+
+save_lib
+```
+
 
 **Power Plan Visualization:** 
 ![Power Plan](images/powerplan.jpeg)
@@ -133,6 +226,60 @@ Cell Area <p>
 
 - Legalized using `place_opt` and `legalize_placement`
 - Placement checked with parasitic models
+
+ **Placement File** <p>
+
+ ```tcl
+####mode for placement
+
+set mode1 "func"
+set corner1 "nom"
+set scenario1 "${mode1}::${corner1}"
+remove_modes -all; remove_corners -all; remove_scenarios -all
+
+create_mode $mode1
+create_corner $corner1
+create_scenario -name func::nom -mode func -corner nom
+current_mode func
+current_scenario func::nom
+
+source ./../CONSTRAINTS/full_adder.sdc
+
+#set_dont_use [get_lib_cells */FADD*]
+#set_dont_use [get_lib_cells */HADD*]
+#set_dont_use [get_lib_cells */AO*]
+#set_dont_use [get_lib_cells */OA*]
+set_dont_use [get_lib_cells */NAND*]
+#set_dont_use [get_lib_cells */XOR*]
+set_dont_use [get_lib_cells */NOR*]
+#set_dont_use [get_lib_cells */XNOR*]
+#set_dont_use [get_lib_cells */MUX*]
+
+current_corner nom
+current_scenario func::nom
+
+set parasitic1 "p1"
+set tluplus_file$parasitic1 "$PDK_PATH/tech/star_rcxt/saed32nm_1p9m_Cmax.tluplus"
+set layer_map_file$parasitic1 "$PDK_PATH/tech/star_rcxt/saed32nm_tf_itf_tluplus.map"
+
+set parasitic2 "p2"
+set tluplus_file$parasitic2 "$PDK_PATH/tech/star_rcxt/saed32nm_1p9m_Cmin.tluplus"
+set layer_map_file$parasitic2 "$PDK_PATH/tech/star_rcxt/saed32nm_tf_itf_tluplus.map"
+
+read_parasitic_tech -tlup $tluplus_filep1 -layermap $layer_map_filep1 -name p1
+read_parasitic_tech -tlup $tluplus_filep2 -layermap $layer_map_filep2 -name p2
+
+set_parasitic_parameters -late_spec $parasitic1 -early_spec $parasitic2
+set_app_options -name place.coarse.continue_on_missing_scandef -value true
+
+place_pins -self
+place_opt
+legalize_placement
+
+save_block -as full_adder_placement
+save_lib
+```
+ 
 
 **Placement Layout:**  
 ![Placement](images/placement.jpeg)
