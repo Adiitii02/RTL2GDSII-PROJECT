@@ -98,7 +98,8 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 ![Constraints File](images/constraint.jpeg)<p>
 Cell Area <p>
 ![DC Report](images/dc_report_1.jpeg)
-![report](images/dc_report_1.jpeg)
+![report](images/dc_report_1.jpeg)<p>
+report_units
 ![report_2](images/dc_report_2.jpeg)
 
 
