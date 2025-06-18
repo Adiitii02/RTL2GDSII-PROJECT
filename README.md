@@ -111,7 +111,7 @@ Cell Area <p>
 - Pins auto-placed
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
-**Floorplan File** <p>
+
 ### 🗂️ Floorplan Script (`floorplan.tcl`)
 
 ```tcl
@@ -145,7 +145,6 @@ save_lib
 - Core rings and mesh using M7/M8/M6 layers
 - Standard cell rails created on M1
 
-**PowerPlanning File** <p>
 ### PowerPlan Script (`power_planning.tcl`)
 
 ```tcl
@@ -227,7 +226,8 @@ save_lib
 - Legalized using `place_opt` and `legalize_placement`
 - Placement checked with parasitic models
 
- **Placement File** <p>
+ 
+### Placement Script (`placement.tcl`)
 
  ```tcl
 ####mode for placement
@@ -291,6 +291,54 @@ save_lib
 - CCD flow with local skew optimization
 - Clock network synthesized and routed
 
+### Clock Script (`clock.tcl`)
+
+```tcl
+#pre-clock sanity checks
+####################################################
+
+check_design -checks pre_clock_tree_stage
+
+
+###################################################
+##        CTS using CCD  commands
+####################################################
+##
+##stage 1:
+##
+
+synthesize_clock_tree
+##stage 2:
+#
+set_app_options -name cts.optimize.enable_local_skew -value true
+set_app_options -name cts.compile.enable_local_skew -value true
+set_app_options -name cts.compile.enable_global_route -value false
+set_app_options -name clock_opt.flow.enable_ccd -value true
+
+clock_opt -to build_clock
+#stage 3:
+###
+#
+clock_opt -from route_clock -to route_clock
+clock_opt
+
+###########################################################
+###  to report qor the respective CTS
+############################################################
+#
+#report_clock_qor
+#report_clock_qor -largest 2 -show_verbose_paths
+#report_clock_qor -largest 2 -show_verbose_paths > cts_ccd.rpt
+
+##########################################################
+#  to save the block
+########################################################
+
+save_block -as full_adder_cts_CCD
+save_lib
+```
+
+
 **CTS Result:**  
 ![CTS](images/cts.jpeg)
 
@@ -300,6 +348,58 @@ save_lib
 
 - Global, track, and detailed routing completed
 - Antenna violations fixed using diodes
+
+### Route Script (`route.tcl`)
+
+```tcl
+# set app options
+#########################################################
+#
+
+set_app_options -name route.global.crosstalk_driven -value false
+
+
+#track assignment
+set_app_options -name route.track.timing_driven -value true
+set_app_options -name route.track.crosstalk_driven -value true
+#
+
+#detail route 
+set_app_options -name route.detail.timing_driven -value true
+set_app_options -name route.detail.save_after_iterations -value false
+set_app_options -name route.detail.force_max_number_iterations -value false
+set_app_options -name route.detail.antenna -value true
+set_app_options -name route.detail.antenna_fixing_preference -value use_diodes
+set_app_options -name route.detail.diode_libcell_names -value */ANTENNA_RVT
+#
+
+####################################
+#Atomic commands for route_auto
+###################################
+route_global
+#save_block route_global_database
+
+route_track
+#save_block route_track_database
+
+route_detail
+#save_block route_detail_database
+
+#route_auto
+#
+#
+#
+route_opt
+
+######################################
+# OUTPUTS
+#
+#
+write_verilog ./results/full_adder.routed.v
+write_sdc -output ./results/full_adder.routed.sdc
+write_parasitics -format spef -output ./results/full_adder_${scenario1}.spef
+#
+```
 
 **Routed Design:**  
 ![Routing](images/routing.jpeg)
