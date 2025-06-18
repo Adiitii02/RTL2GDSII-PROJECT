@@ -71,7 +71,7 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 **Gates Used**
 ![Gates](images/gates_used.jpeg)
 
-**RTL Schematic:** <p> RTL Schematic <p> 
+**RTL Schematic:**  
 ![RTL Schematic](images/rtl_schematic.jpeg)
 
 ---
@@ -182,7 +182,9 @@ Cell Area <p>
 
 | Metric           | Value             |
 |------------------|------------------|
-| **Area**         | 34.149 μm²        |
+| **Cell Area (DC)**         | 134.70 μm² (netlist only)|    
+|**Design Area (DC)**	141.86 μm² (after placement)|
+|**Cell Area (ICC2)**	160.11 μm² (post-layout)|
 | **Final Slack**  | +0.225552 ns      |
 | **Clock Period** | 3.4 ns            |
 | **Power**        | *From PT Report*  |
