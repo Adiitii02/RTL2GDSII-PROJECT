@@ -112,7 +112,7 @@ Cell Area <p>
 - Floorplan saved and opened as `RIPPLE_ADDER`
 
 **Floorplan File** <p>
-![](ICCII/scripts/floorplan.tcl)
+![file](ICCII/scripts/floorplan.tcl)
 
 **Floorplan Layout:** 
 ![Floorplan](images/floorplan.jpeg)
