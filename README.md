@@ -1,4 +1,4 @@
-# 8-bit Ripple Carry Adder using 1-bit Full Adders | RTL to GDSII
+# 8-bit Ripple Carry Adder using 1-bit Full Adder | RTL to GDSII
 
 > This project demonstrates the complete ASIC design flow of an 8-bit Ripple Carry Adder (RCA) using Verilog and Synopsys tools, from RTL to GDSII layout, following industry practices.
 
