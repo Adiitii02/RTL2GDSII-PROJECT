@@ -198,3 +198,14 @@ This project successfully demonstrates the entire RTL to GDSII design flow of a 
 
 The result confirms a solid understanding of the full ASIC flow—from RTL to layout—and reinforces best practices in power planning, timing closure, and physical optimization.
 
+**CREDITS:**
+This project was finished as a component of Pandit Deendayal Energy University's (PDEU) RTL to GDSII Flow workshop.
+We are deeply appreciative of VLSI Expert Mr. Puneet Mittal, for his outstanding leadership, technical mentoring, and unwavering support during the workshop, and the distinguished PDEU teaching members, for providing a solid basis in VLSI design and facilitating hands-on learning with cutting-edge EDA tools.
+
+
+**MADE BY:**
+Name: Aditi Anand
+Roll no.: 22BEC048
+College: Pandit Deendayal Energy University, Gandhinagar
+Email ID: aditi.aec22@sot.pdpu.ac.in
+
