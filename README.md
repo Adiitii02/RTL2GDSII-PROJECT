@@ -79,8 +79,8 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 - Verilog testbench validates functional correctness.
 - Waveform viewed using Verdi (`.fsdb` output)
 
-**🖼️ Simulation Waveform:**  
-![Waveform](images/verdi_waveform.png)
+**🖼️ Simulation Waveform:**  <p> Simulated Waveform <p>
+![Waveform](images/verdi_waveform.jpeg)
 
 ---
 
