@@ -24,13 +24,13 @@
 
 ---
 
-## 🎯 Objective
+## Objective
 
 Design, implement, and verify an **8-bit Ripple Carry Adder** using **1-bit Full Adders**, and carry out the complete **ASIC VLSI flow** to generate a GDSII-compatible layout using the **SAED 32nm** standard cell library.
 
 ---
 
-## 🛠️ Tools & Environment
+## Tools & Environment
 
 | Tool             | Purpose                         |
 |------------------|----------------------------------|
