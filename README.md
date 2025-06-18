@@ -52,11 +52,7 @@ Computes:
 sum = A ⊕ B ⊕ Cin
 cout = AB + BCin + ACin
 
-yaml
-Copy
-Edit
-
-### 🧮 8-bit Ripple Carry Adder
+### 8-bit Ripple Carry Adder
 Cascaded connection of 8 full adders. Each FA's carry-out is connected to the next FA's carry-in.
 
 ---
@@ -66,7 +62,8 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 ### 🔹 1. RTL Design
 
 - Files:
-  - `full_adder.v`
+  - full_adder.v
+    (images/Screenshot from 2025-06-03 06-03-16.png)
   - `ripple_adder.v`
 - Created using Verilog HDL.
 - Modular and hierarchical design.
