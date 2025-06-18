@@ -68,8 +68,8 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 - Created using Verilog HDL.
 - Modular and hierarchical design.
 
-**🖼️ RTL Schematic:**  
-![RTL Schematic](images/rtl_schematic.png)
+**🖼️ RTL Schematic:** <p> RTL Schematic <p> 
+![RTL Schematic](images/rtl_schematic.jpeg)
 
 ---
 
