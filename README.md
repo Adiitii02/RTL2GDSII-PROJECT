@@ -90,7 +90,7 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 - Clock constraint: 3.4 ns
 - Area and timing reports generated using `report_qor` and `report_timing`
 
-** DC Report:**  <p>
+ DC Report:  
 ![Constraints File](images/constraint.jpeg)<p>
 ![DC Report](images/dc_report.jpeg)<p> Cell Area <p>
 ![](images/dc_report_1.jpeg)<p>
