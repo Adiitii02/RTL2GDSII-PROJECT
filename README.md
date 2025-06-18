@@ -61,9 +61,9 @@ Cascaded connection of 8 full adders. Each FA's carry-out is connected to the ne
 
 ### 🔹 1. RTL Design
 
-- Files:
-  - ![1 bit Full Adder code](images/full_adder.png)
-  - ![8 bit Ripple Adder code](images/ripple_adder.png)
+- Files: <p>1 bit Full Adder <p>
+  - ![1 bit Full Adder code](images/full_adder.png)<p> 8 bit Ripple Adder <p>
+  - ![8 bit Ripple Adder code](images/ripple_adder.png)<p> Testbench of Ripple Adder <p>
   - ![Testbench Code](images/tb_ripple_adder.png) 
 - Created using Verilog HDL.
 - Modular and hierarchical design.
